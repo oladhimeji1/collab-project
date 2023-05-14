@@ -17,10 +17,10 @@ export default function Home() {
         <div className='bg-gray-200 px-4 md:px-20 pt-20 pb-10 m-auto w-full md:w-[60vw]'>
           <h1 className="text-2xl font-bold text-black mx-auto w-[40rem]">WANNA COLLAB WITH US? <br />LET US KNOW BELOW</h1>
           <div className=' mt-4 mx-auto'>
-            <input className='w-full mx-auto p-2 border-[1.8px] placeholder:text-black placeholder:text-xs border-gray-500  bg-gray-100 outline-0'  placeholder='Enter Your First Name *' type="text" /> <br /><br />
-            <input className='w-full mx-auto p-2 border-[1.8px] placeholder:text-black placeholder:text-xs border-gray-500  bg-gray-100 outline-0' placeholder='Enter Your Last Name *' type="text" /> <br /><br />
-            <input className='w-full mx-auto p-2 border-[1.8px] placeholder:text-black placeholder:text-xs border-gray-500  bg-gray-100 outline-0' placeholder='Enter Your Email Address *' type="text" /> <br /><br />
-            <input className='w-full mx-auto p-2 border-[1.8px] placeholder:text-black placeholder:text-xs border-gray-500 bg-gray-100 outline-0' placeholder='Enter Your Country *' type="text" /> <br /><br />
+            <input className='w-full text-black mx-auto p-2 border-[1.8px] placeholder:text-black placeholder:text-xs border-gray-500  bg-gray-100 outline-0'  placeholder='Enter Your First Name *' type="text" /> <br /><br />
+            <input className='w-full text-black mx-auto p-2 border-[1.8px] placeholder:text-black placeholder:text-xs border-gray-500  bg-gray-100 outline-0' placeholder='Enter Your Last Name *' type="text" /> <br /><br />
+            <input className='w-full text-black mx-auto p-2 border-[1.8px] placeholder:text-black placeholder:text-xs border-gray-500  bg-gray-100 outline-0' placeholder='Enter Your Email Address *' type="text" /> <br /><br />
+            <input className='w-full text-black mx-auto p-2 border-[1.8px] placeholder:text-black placeholder:text-xs border-gray-500 bg-gray-100 outline-0' placeholder='Enter Your Country *' type="text" /> <br /><br />
           </div>
 
           <div className='w-[40rem] text-black overflow-auto mx-auto'>
@@ -85,13 +85,13 @@ export default function Home() {
               <input type="checkbox" name="" id="" />
               <span> Kids</span>
             </div>
-            <div className='my-1'>
+            <div className='my-1 text-black'>
               <input type="checkbox" name="" id="" />
               <span> Beauty</span>
             </div>
           </div>
 
-          <div className='w-[70vw] mx-auto'>
+          <div className='w-[70vw] text-black mx-auto'>
             <textarea name="" className='lg:w-[50vw] md:w-[40vw] w-full h-48 m-auto p-2 border-[1.8px] placeholder:text-gray-500 placeholder:text-sm border-gray-500 bg-gray-100 outline-0' id="" placeholder='Tell us about yourself!'></textarea>
           </div>
           <div className="flex justify-center mt-6">
