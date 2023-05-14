@@ -14,8 +14,8 @@ export default function Home() {
     <div>
       <Header />
       <div className='mt-10 md:mt-32 overflow-x-hidden text-xs md:text-md lg:text-lg'>
-        <div className='bg-gray-100 px-20 pt-20 pb-10 m-auto w-full md:w-[60vw]'>
-          <h1 className="text-2xl font-bold mx-auto w-[40rem]">WANNA COLLAB WITH US? <br />LET US KNOW BELOW</h1>
+        <div className='bg-gray-500 px-4 md:px-20 pt-20 pb-10 m-auto w-full md:w-[60vw]'>
+          <h1 className="text-2xl font-bold text-black mx-auto w-[40rem]">WANNA COLLAB WITH US? <br />LET US KNOW BELOW</h1>
           <div className=' mt-4 mx-auto'>
             <input className='w-full mx-auto p-2 border-[1.8px] placeholder:text-black placeholder:text-xs border-gray-500  bg-gray-100 outline-0'  placeholder='Enter Your First Name *' type="text" /> <br /><br />
             <input className='w-full mx-auto p-2 border-[1.8px] placeholder:text-black placeholder:text-xs border-gray-500  bg-gray-100 outline-0' placeholder='Enter Your Last Name *' type="text" /> <br /><br />
@@ -23,7 +23,7 @@ export default function Home() {
             <input className='w-full mx-auto p-2 border-[1.8px] placeholder:text-black placeholder:text-xs border-gray-500 bg-gray-100 outline-0' placeholder='Enter Your Country *' type="text" /> <br /><br />
           </div>
 
-          <div className='w-[40rem] mx-auto'>
+          <div className='w-[40rem] text-black overflow-auto mx-auto'>
             <p className='py-2'>Which social platforms do you use the most? Check all that apply.</p>
             <div className='my-1'>
               <input type="checkbox" onChange={()=>{
