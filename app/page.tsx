@@ -91,8 +91,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div className='w-[70vw] text-black mx-auto'>
-            <textarea name="" className='lg:w-[50vw] md:w-[40vw] w-full h-48 m-auto p-2 border-[1.8px] placeholder:text-gray-500 placeholder:text-sm border-gray-500 bg-gray-100 outline-0' id="" placeholder='Tell us about yourself!'></textarea>
+          <div className='md:w-[70vw] w-full mx-auto'>
+            <textarea name="" className='lg:w-[50vw] text-black md:w-[40vw] w-full h-48 m-auto p-2 border-[1.8px] placeholder:text-gray-500 placeholder:text-sm border-gray-500 bg-gray-100 outline-0' id="" placeholder='Tell us about yourself!'></textarea>
           </div>
           <div className="flex justify-center mt-6">
           <button className='bg-black hover:bg-white hover:text-black border border-black text-white uppercase px-6 py-2 mx-auto'>Submit</button>
