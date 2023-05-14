@@ -1,7 +1,7 @@
 export default function Header() {
     return (
-        <div className="shadow-md fixed overflow-x-hidden bg-white z-[50] w-full top-0 left-0">
-            <nav className="flex overflow-x-hidden">
+        <div className="shadow-md fixed bg-white z-[50] text-black w-full top-0 left-0">
+            <nav className="flex">
                 <div  className="uppercase text-xs items-center flex ml-16 mr-2 mt-4 md:m-6" >
                     <h1 className="text-lg md:text-4xl pb-2 md:pb-0 mr-4 md:mr-8 font-bold uppercase">Logo</h1>
                     <div className="md:flex hidden">
