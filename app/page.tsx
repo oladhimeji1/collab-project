@@ -91,7 +91,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className='md:w-[70vw] w-full mx-auto'>
+          <div className='md:w-[70vw] w-full bg-red-300 mx-auto'>
             <textarea name="" className='lg:w-[50vw] text-black md:w-[40vw] w-full h-48 m-auto p-2 border-[1.8px] placeholder:text-gray-500 placeholder:text-sm border-gray-500 bg-gray-100 outline-0' id="" placeholder='Tell us about yourself!'></textarea>
           </div>
           <div className="flex justify-center mt-6">
