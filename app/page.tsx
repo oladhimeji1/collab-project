@@ -45,7 +45,7 @@ export default function Home() {
   const [countryMsg, setcountryMsg] = useState(false);
   const [aboutMsg, setaboutMsg] = useState(false);
 
-  const [isShow, setIsShow] = useState(false)
+  // const [isShow, setIsShow] = useState(false)
 
   const handleSubmit = async () => {
     if(!fname){
@@ -84,8 +84,8 @@ export default function Home() {
         })
         const res = await respones.json()
         console.log(res);
-        setIsShow(true)
-        setTimeout(()=>{setIsShow(false)},3000)
+        // setIsShow(true)
+        // setTimeout(()=>{setIsShow(false)},3000)
     }
   }
 
@@ -243,7 +243,7 @@ export default function Home() {
           
         </div>
       </div>
-      <Toast setIsShow/>
+      <Toast />
       <Footer />
     </div>
   )
