@@ -1,14 +1,93 @@
 'use client';
 import Header from '../components/header'
 import Footer from '../components/footer'
-import { useState } from 'react'
+import Toast from '../components/toast'
+import { use, useState } from 'react'
 
 export default function Home() {
+
+  const [fname, setfName] = useState('')
+  const [lname, setlName] = useState('')
+  const [email, setEmail] = useState('')
+  const [country, setCountry] = useState('')
+  const [about, setAbout] = useState('')
+
+  const [ig, setIg] = useState('')
+  const [igUname, setIgUname] = useState('')
+  const [igFollower, setIgFollower] = useState('')
+
+  const [yt, setYt] = useState('')
+  const [ytUname, setYtUname] = useState('')
+  const [ytSub, setYtSub] = useState('')
+
+  const [tik, setTik] = useState('')
+  const [tikUname, setTikUname] = useState('')
+  const [tikFollower, setTikFollower] = useState('')
+
+  const [snap, setSnap] = useState('')
+  const [snapUname, setTSnapUname] = useState('')
+  const [snapFollower, setSnapFollower] = useState('')
+
+  const [women, setWomen] = useState('')
+  const [curve, setCurve] = useState('')
+  const [mens, setMen] = useState('')
+  const [kids, setKids] = useState('')
+  const [beauty, setBeauty] = useState('')
 
   const [isInstagram, setInstagram] = useState(true)
   const [isYoutube, setYoutube] = useState(true)
   const [isTiktok, setTiktok] = useState(true)
-  const [isSnapchat, setSnapchat] = useState(true)
+  const [isSnapchat, setSnapchat] = useState(true);
+
+  const [fNameMsg, setfNameMsg] = useState(false);
+  const [lNameMsg, setlNameMsg] = useState(false);
+  const [emailMsg, setemailMsg] = useState(false);
+  const [countryMsg, setcountryMsg] = useState(false);
+  const [aboutMsg, setaboutMsg] = useState(false);
+
+  const [isShow, setIsShow] = useState(false)
+
+  const handleSubmit = async () => {
+    if(!fname){
+      setfNameMsg(true)
+    } if(!lname){
+      setlNameMsg(true)
+    } if(!email){
+      setemailMsg(true)
+    } if(!country){
+      setcountryMsg(true)
+    } if(!about){
+      setaboutMsg(true)
+    } if(fname){
+      setfNameMsg(false)
+    } if(lname){
+      setlNameMsg(false)
+    } if(email){
+      setemailMsg(false)
+    } if(country){
+      setcountryMsg(false)
+    } if(about.length > 0){
+      setaboutMsg(false)
+    }
+  
+    if(fname && lname && email && country && about){
+      const data = { 
+        fname, lname, email, country, ig,
+        igUname, igFollower, yt, ytUname,
+        ytSub, tik, tikUname, tikFollower,
+        snap, snapUname, snapFollower, women, curve, mens, kids, beauty, about     
+       };
+        const respones = await fetch('http://localhost:5000/add-user', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        })
+        const res = await respones.json()
+        console.log(res);
+        setIsShow(true)
+        setTimeout(()=>{setIsShow(false)},3000)
+    }
+  }
 
   return (
     <div>
@@ -17,90 +96,154 @@ export default function Home() {
         <div className='bg-gray-200 px-4 md:px-20 pt-20 pb-10 m-auto w-full md:w-[60vw]'>
           <h1 className="text-2xl font-bold text-black mx-auto w-[40rem]">WANNA COLLAB WITH US? <br />LET US KNOW BELOW</h1>
           <div className=' mt-4 mx-auto'>
-            <input className='w-full text-black mx-auto p-2 border-[1.8px] placeholder:text-black placeholder:text-xs border-gray-500  bg-gray-100 outline-0'  placeholder='Enter Your First Name *' type="text" /> <br /><br />
-            <input className='w-full text-black mx-auto p-2 border-[1.8px] placeholder:text-black placeholder:text-xs border-gray-500  bg-gray-100 outline-0' placeholder='Enter Your Last Name *' type="text" /> <br /><br />
-            <input className='w-full text-black mx-auto p-2 border-[1.8px] placeholder:text-black placeholder:text-xs border-gray-500  bg-gray-100 outline-0' placeholder='Enter Your Email Address *' type="text" /> <br /><br />
-            <input className='w-full text-black mx-auto p-2 border-[1.8px] placeholder:text-black placeholder:text-xs border-gray-500 bg-gray-100 outline-0' placeholder='Enter Your Country *' type="text" /> <br /><br />
+
+            <input
+            onChange={e=> setfName(e.target.value)}
+            className='w-full text-black mx-auto p-2 border-[1.8px] placeholder:text-black placeholder:text-xs border-gray-500  bg-gray-100 outline-0'  placeholder='Enter Your First Name *' type="text" />
+            {fNameMsg && <small className='text-xs pt-2 text-red-700'>* This field is required</small>} <br /><br />
+
+            <input
+            onChange={e=> setlName(e.target.value)}
+             className='w-full text-black mx-auto p-2 border-[1.8px] placeholder:text-black placeholder:text-xs border-gray-500  bg-gray-100 outline-0' placeholder='Enter Your Last Name *' type="text" />
+            {lNameMsg && <small className='text-xs pt-2 text-red-700'>* This field is required</small>} <br /><br />
+
+            <input
+            onChange={e=> setEmail(e.target.value)}
+             className='w-full text-black mx-auto p-2 border-[1.8px] placeholder:text-black placeholder:text-xs border-gray-500  bg-gray-100 outline-0' placeholder='Enter Your Email Address *' type="text" />
+            {emailMsg && <small className='text-xs pt-2 text-red-700'>* This field is required</small>} <br /><br />
+
+            <input
+            onChange={e=> setCountry(e.target.value)}
+             className='w-full text-black mx-auto p-2 border-[1.8px] placeholder:text-black placeholder:text-xs border-gray-500 bg-gray-100 outline-0' placeholder='Enter Your Country *' type="text" />
+            {countryMsg && <small className='text-xs pt-2 text-red-700'>* This field is required</small>} <br /><br />
           </div>
 
-          <div className='w-[40rem] text-black overflow-auto mx-auto'>
+          <div className='w-full text-black overflow-auto mx-auto'>
             <p className='py-2'>Which social platforms do you use the most? Check all that apply.</p>
+
             <div className='my-1'>
-              <input type="checkbox" onChange={()=>{
+              <input type="checkbox" onChange={e=>{
                 isInstagram ? setInstagram(false) : setInstagram(true)
+                e.target.checked === true ? setIg('Yes') : setIg('')
               }} name="" id="" />
               <span> Instagram</span> <br />
+
               {!isInstagram && <div>
-                <input className='border-[1.8px] px-2  placeholder:text-xs border-gray-500 bg-gray-100 outline-0' placeholder='Instagram isername' type="text" />
-                <input className='border-[1.8px] ml-2 px-2  placeholder:text-xs border-gray-500 bg-gray-100 outline-0' placeholder='# of followers' type="text" />
+                <input
+                onChange={e=> setIgUname(e.target.value)}
+                className='border-[1.8px] w-[45%] ml-4 px-2 placeholder:text-xs border-gray-500 bg-gray-100 outline-0' placeholder='Instagram username' type="text" />
+
+                <input
+                onChange={e=> setIgFollower(e.target.value)}
+                 className='border-[1.8px] w-[45%] ml-4 px-2  placeholder:text-xs border-gray-500 bg-gray-100 outline-0' placeholder='# of followers' type="number" />
               </div>}
             </div>
+
             <div className='my-1'>
-              <input type="checkbox" onChange={()=>{
+              <input type="checkbox" onChange={e=>{
                 isYoutube ? setYoutube(false) : setYoutube(true)
+                e.target.checked === true ? setYt('Yes') : setYt('')
               }} name="" id="" />
               <span> YouTube</span> <br />
+
               {!isYoutube && <div>
-                <input className='border-[1.8px] px-2  placeholder:text-xs border-gray-500 bg-gray-100 outline-0' placeholder='youtube username' type="text" />
-                <input className='border-[1.8px] ml-2 px-2  placeholder:text-xs border-gray-500 bg-gray-100 outline-0' placeholder='# of subscribers' type="text" />
+                <input
+                onChange={e=> setYtUname(e.target.value)}
+                  className='border-[1.8px] w-[45%] ml-4 px-2  placeholder:text-xs border-gray-500 bg-gray-100 outline-0' placeholder='youtube username' type="text" />
+
+                <input
+                onChange={e=> setYtSub(e.target.value)}
+                   className='border-[1.8px] w-[45%] ml-4 px-2  placeholder:text-xs border-gray-500 bg-gray-100 outline-0' placeholder='# of subscribers' type="number" />
               </div>}
             </div>
+
             <div className='my-1'>
-              <input type="checkbox" onChange={()=>{
-                isTiktok ? setTiktok(false) : setTiktok(true)
+              <input type="checkbox" onChange={e=>{
+                isTiktok ? setTiktok(false) : setTiktok(true);
+                e.target.checked === true ? setTik('Yes') : setTik('')
               }} name="" id="" />
               <span> TikTok</span> <br />
+
               {!isTiktok && <div>
-                <input className='border-[1.8px] px-2  placeholder:text-xs border-gray-500 bg-gray-100 outline-0' placeholder='tiktok username' type="text" />
-                <input className='border-[1.8px] ml-2 px-2  placeholder:text-xs border-gray-500 bg-gray-100 outline-0' placeholder='# of followers' type="text" />
+                <input
+                onChange={e=> setTikUname(e.target.value)}
+                   className='border-[1.8px] w-[45%] ml-4 px-2  placeholder:text-xs border-gray-500 bg-gray-100 outline-0' placeholder='tiktok username' type="text" />
+
+                <input
+                onChange={e=> setTikFollower(e.target.value)}
+                   className='border-[1.8px] w-[45%] ml-4 px-2  placeholder:text-xs border-gray-500 bg-gray-100 outline-0' placeholder='# of followers' type="number" />
               </div>}
             </div>
+
             <div className='my-1'>
-              <input type="checkbox" onChange={()=>{
+              <input type="checkbox" onChange={e=>{
                 isSnapchat ? setSnapchat(false) : setSnapchat(true)
+                e.target.checked === true ? setSnap('Yes') : setSnap('')
               }} name="" id="" />
               <span> Snapchat</span>
+
               {!isSnapchat && <div>
-                <input className='border-[1.8px] px-2  placeholder:text-xs border-gray-500 bg-gray-100 outline-0' placeholder='snapchat username' type="text" />
-                <input className='border-[1.8px] ml-2 px-2  placeholder:text-xs border-gray-500 bg-gray-100 outline-0' placeholder='# of followers' type="text" />
+                <input
+                onChange={e=> setTSnapUname(e.target.value)}
+                   className='border-[1.8px] w-[45%] ml-4 px-2  placeholder:text-xs border-gray-500 bg-gray-100 outline-0' placeholder='snapchat username' type="text" />
+
+                <input
+                onChange={e=> setSnapFollower(e.target.value)}
+                 className='border-[1.8px] w-[45%] ml-4 px-2  placeholder:text-xs border-gray-500 bg-gray-100 outline-0' placeholder='# of followers' type="number" />
               </div>}
             </div>
           </div>
 
-          <div className='w-[40rem] text-black mx-auto'>
+          <div className='w-full text-black mx-auto'>
             <p className='py-2'>Which divisions would you like to represent? Check all that apply.</p>
             <div className='my-1'>
-              <input type="checkbox" name="" id="" />
+              <input onChange={e=>{
+                e.target.checked === true ? setWomen('Yes') : setWomen('')
+              }} type="checkbox" name="" id="" />
               <span> Women</span> <br />
             </div>
+
             <div className='my-1'>
-              <input type="checkbox" name="" id="" />
+              <input onChange={e=>{
+                e.target.checked === true ? setCurve('Yes') : setCurve('')
+              }} type="checkbox" name="" id="" />
               <span> Curve</span> <br />
             </div>
+
             <div className='my-1'>
-              <input type="checkbox" name="" id="" />
+              <input onChange={e=>{
+                e.target.checked === true ? setMen('Yes') : setMen('')
+              }} type="checkbox" name="" id="" />
               <span> Mens</span> <br />
             </div>
             <div className='my-1'>
-              <input type="checkbox" name="" id="" />
+              <input onChange={e=>{
+                e.target.checked === true ? setKids('Yes') : setKids('')
+              }} type="checkbox" name="" id="" />
               <span> Kids</span>
             </div>
             <div className='my-1 text-black'>
-              <input type="checkbox" name="" id="" />
+              <input onChange={e=>{
+                e.target.checked === true ? setBeauty('Yes') : setBeauty('')
+              }} type="checkbox" name="" id="" />
               <span> Beauty</span>
             </div>
           </div>
 
           <div className='md:w-[70vw] w-full mx-auto'>
-            <textarea name="" className='lg:w-[50vw] text-black md:w-[40vw] w-full h-48 m-auto p-2 border-[1.8px] placeholder:text-gray-500 placeholder:text-sm border-gray-500 bg-gray-100 outline-0' id="" placeholder='Tell us about yourself!'></textarea>
+            <textarea
+                onChange={e=> {setAbout(e.target.value)
+                }}
+                name="" className='lg:w-[50vw] text-black md:w-[40vw] w-full h-48 m-auto p-2 border-[1.8px] placeholder:text-gray-500 placeholder:text-sm border-gray-500 bg-gray-100 outline-0' id="" placeholder='Tell us about yourself!'></textarea>
+            {aboutMsg && <small className='text-xs text-red-700'>* This field is required</small>}
           </div>
           <div className="flex justify-center mt-6">
-          <button className='bg-black hover:bg-white hover:text-black border border-black text-white uppercase px-6 py-2 mx-auto'>Submit</button>
+          <button onClick={handleSubmit} className='bg-black hover:bg-gray-400 hover:text-black border border-black text-white uppercase px-6 py-2 mx-auto'>Submit</button>
           </div>
           
         </div>
       </div>
-
+      <Toast setIsShow/>
       <Footer />
     </div>
   )
