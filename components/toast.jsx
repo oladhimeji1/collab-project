@@ -2,8 +2,8 @@ import { useState } from "react"
 
 export default function Toast(){
 
-    const [isShow, setIsShow] = useState(true)
-    const [isLoading, setIsLoading] = useState(true)
+    const [isShow, setIsShow] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
     return (
         <>
         {/* { isShow && <div className=" w-48 h-20 bg-green-500 rounded-lg border-b-4 border-green-900 top-80 fixed opacity-90 z-50 left-24 sm:left-[15rem] md:left-[24rem] lg:left-[35rem]">

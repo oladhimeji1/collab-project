@@ -235,7 +235,7 @@ export default function Home() {
                 onChange={e=> {setAbout(e.target.value)
                 }}
                 name="" className='lg:w-[50vw] text-black md:w-[40vw] w-full h-48 m-auto p-2 border-[1.8px] placeholder:text-gray-500 placeholder:text-sm border-gray-500 bg-gray-100 outline-0' id="" placeholder='Tell us about yourself!'></textarea>
-            {aboutMsg && <small className='text-xs text-red-700'>* This field is required</small>}
+            {aboutMsg && <small className='text-xs block text-red-700'>* This field is required</small>}
           </div>
           <div className="flex justify-center mt-6">
           <button onClick={handleSubmit} className='bg-black hover:bg-gray-400 hover:text-black border border-black text-white uppercase px-6 py-2 mx-auto'>Submit</button>
