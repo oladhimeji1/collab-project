@@ -45,7 +45,9 @@ export default function Home() {
   const [countryMsg, setcountryMsg] = useState(false);
   const [aboutMsg, setaboutMsg] = useState(false);
 
-  // const [isShow, setIsShow] = useState(false)
+  const [pending, setPending] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
 
   const handleSubmit = async () => {
     if(!fname){
@@ -71,6 +73,8 @@ export default function Home() {
     }
   
     if(fname && lname && email && country && about){
+      setPending(true);
+      setLoading(true);
       const data = { 
         fname, lname, email, country, ig,
         igUname, igFollower, yt, ytUname,
@@ -83,9 +87,20 @@ export default function Home() {
             body: JSON.stringify(data)
         })
         const res = await respones.json()
-        console.log(res);
-        // setIsShow(true)
-        // setTimeout(()=>{setIsShow(false)},3000)
+        // console.log(res);
+        setfName('')
+        setlName('')
+        setEmail('')
+        setCountry('')
+        setAbout('')
+        setTimeout(()=>{
+          setLoading(false);
+          setSuccess(true);
+        },3000);
+        setTimeout(()=>{
+          setPending(false);
+          setSuccess(false);
+        },5000);
     }
   }
 
@@ -108,9 +123,17 @@ export default function Home() {
             {lNameMsg && <small className='text-xs pt-2 text-red-700'>* This field is required</small>} <br /><br />
 
             <input
-            onChange={e=> setEmail(e.target.value)}
+            onChange={e=> {
+              if(e.target.value.includes('.com') && e.target.value.includes('@')){
+                setEmail(e.target.value)
+                setemailMsg(false)
+              } else {
+                setemailMsg(true)
+              }
+              
+            }}
              className='w-full text-black mx-auto p-2 border-[1.8px] placeholder:text-black placeholder:text-xs border-gray-500  bg-gray-100 outline-0' placeholder='Enter Your Email Address *' type="text" />
-            {emailMsg && <small className='text-xs pt-2 text-red-700'>* This field is required</small>} <br /><br />
+            {emailMsg && <small className='text-xs pt-2 text-red-700'>* This field is required and must contain '@' & '.com'</small>} <br /><br />
 
             <input
             onChange={e=> setCountry(e.target.value)}
@@ -198,33 +221,33 @@ export default function Home() {
             <p className='py-2'>Which divisions would you like to represent? Check all that apply.</p>
             <div className='my-1'>
               <input onChange={e=>{
-                e.target.checked === true ? setWomen('Yes') : setWomen('')
+                e.target.checked === true ? setWomen('Women') : setWomen('')
               }} type="checkbox" name="" id="" />
               <span> Women</span> <br />
             </div>
 
             <div className='my-1'>
               <input onChange={e=>{
-                e.target.checked === true ? setCurve('Yes') : setCurve('')
+                e.target.checked === true ? setCurve('Curve') : setCurve('')
               }} type="checkbox" name="" id="" />
               <span> Curve</span> <br />
             </div>
 
             <div className='my-1'>
               <input onChange={e=>{
-                e.target.checked === true ? setMen('Yes') : setMen('')
+                e.target.checked === true ? setMen('Men') : setMen('')
               }} type="checkbox" name="" id="" />
               <span> Mens</span> <br />
             </div>
             <div className='my-1'>
               <input onChange={e=>{
-                e.target.checked === true ? setKids('Yes') : setKids('')
+                e.target.checked === true ? setKids('Kids') : setKids('')
               }} type="checkbox" name="" id="" />
               <span> Kids</span>
             </div>
             <div className='my-1 text-black'>
               <input onChange={e=>{
-                e.target.checked === true ? setBeauty('Yes') : setBeauty('')
+                e.target.checked === true ? setBeauty('Beauty') : setBeauty('')
               }} type="checkbox" name="" id="" />
               <span> Beauty</span>
             </div>
@@ -243,7 +266,21 @@ export default function Home() {
           
         </div>
       </div>
-      <Toast />
+
+      {/* Toast */}
+      <>
+        { pending && <div className=" w-48 h-20 bg-gray-500 rounded-lg border-b-4 border-gray-900 top-80 fixed opacity-90 z-50 left-32 sm:left-[15rem] md:left-[24rem] lg:left-[35rem]">
+          <div className="relative h-full">
+            { loading && <div>
+              <div className="ml-3 mt-1 h-7 w-7 absolute left-16 top-4 border-t-gray-900 animate-spin border-2 border-white rounded-full"></div>
+              <p className='absolute text-white left-16 bottom-2 text-xs'>Loading...</p>
+            </div> }
+             
+                {success && <p className="absolute left-8 top-8 text-xs text-white">Submited Succesfully!!</p>}
+            </div>
+          </div>
+               }
+      </>
       <Footer />
     </div>
   )
